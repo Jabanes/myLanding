@@ -229,14 +229,14 @@
     /* Section Styles */
     /* Dramatically increased section padding for better vertical rhythm */
     section {
-      padding: 12rem 0;
+      padding: 8rem 0;
     }
 
     /* Kept right-aligned for Hebrew, increased max-width */
     .section-header {
       text-align: right;
       max-width: 950px;
-      margin: 0 0 6rem auto;
+      margin: 0 0 4rem auto;
     }
 
     /* More subtle label styling */
@@ -265,7 +265,7 @@
 
     /* Larger, more readable section descriptions */
     .section-header p {
-      font-size: 1.3rem;
+      font-size: 1.4rem;
       color: var(--color-text-secondary);
       line-height: 1.75;
       font-weight: 400;
@@ -280,7 +280,7 @@
 
     /* Increased font size and spacing between paragraphs */
     .about-content p {
-      font-size: 1.3rem;
+      font-size: 1.4rem;
       line-height: 2;
       color: var(--color-text-secondary);
       margin-bottom: 2.25rem;
@@ -352,7 +352,8 @@
     /* Increased max-width and padding, removed heavy background */
     .why-free-content {
       max-width: 900px;
-      margin: 0 auto;
+      margin-right: 0;
+      margin-left: auto;
       padding: 4rem;
       background-color: transparent;
       border: 1px solid var(--color-border);
@@ -381,8 +382,13 @@
     /* Contact Section */
     /* Increased max-width for less cramped form */
     .contact-form {
-      max-width: 800px;
-      margin: 0 0 0 auto;
+      max-width: 700px;
+      margin: 0 auto;
+    }
+
+    #contact .section-header {
+      text-align: center;
+      margin: 0 auto 3rem;
     }
 
     /* Increased spacing between form groups */
@@ -444,6 +450,64 @@
       margin-bottom: 0;
       font-size: 1rem;
       font-weight: 400;
+    }
+
+    /* =========================
+   SOLUTIONS SECTION
+========================= */
+
+    .solutions-list {
+      max-width: 900px;
+      margin-right: 0;
+      margin-left: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+    }
+
+    .solution-card {
+      padding: 2.5rem;
+      border: 1px solid var(--color-border);
+      border-radius: 1.5rem;
+      background-color: var(--color-surface);
+      transition: all 0.3s ease;
+    }
+
+    .solution-card:hover {
+      border-color: var(--color-accent);
+      background-color: var(--color-surface-elevated);
+    }
+
+    .solution-problem,
+    .solution-answer {
+      display: block;
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--color-accent-soft);
+      margin-bottom: 0.5rem;
+    }
+
+    .solution-problem-text {
+      font-size: 1.35rem;
+      font-weight: 500;
+      color: var(--color-text);
+      line-height: 1.8;
+      margin-bottom: 1.75rem;
+    }
+
+    .solution-answer-text {
+      font-size: 1.25rem;
+      font-weight: 400;
+      color: var(--color-text-secondary);
+      line-height: 1.8;
+    }
+
+    .solutions-note {
+      text-align: center;
+      font-size: 1.2rem;
+      color: var(--color-text-secondary);
+      margin-top: 3rem;
+      font-weight: 500;
     }
 
     /* Responsive Design */
@@ -516,7 +580,7 @@
       }
 
       section {
-        padding: 7rem 0;
+        padding: 5.5rem 0;
       }
 
       .why-free-content {
@@ -535,6 +599,24 @@
           margin-bottom: 2rem;
         }
       }
+
+      .solution-card {
+        padding: 2rem;
+      }
+
+      .solution-problem-text {
+        font-size: 1.1rem;
+      }
+
+      .solution-answer-text {
+        font-size: 1.05rem;
+      }
+
+      .solutions-note {
+        font-size: 1.05rem;
+        margin-top: 2rem;
+      }
+
     }
   </style>
 </head>
@@ -574,7 +656,7 @@
 
         <div class="btn-group">
           <a href="#contact" class="btn btn-primary">בוא נדבר</a>
-          <a href="#solutions" class="btn btn-secondary">תראה דוגמאות</a>
+          <a href="#solutions" class="btn btn-secondary">ראה דוגמאות</a>
         </div>
       </div>
     </div>
@@ -585,23 +667,20 @@
     <div class="container">
       <div class="section-header">
         <span class="section-label">עליי</span>
-        <h2>בלי הבטחות, בלי חארטות</h2>
-        <p>גישה פרקטית לפתרון בעיות אמיתיות</p>
+        <h2>בחינם לגמרי, ללא התחייבת. אין קאץ'</h2>
       </div>
 
       <div class="about-content">
         <p>
           אני עובד ביום־יום כמתכנת בחברת הייטק, ובזמן הפנוי בונה כלים ואוטומציות
           שמחליפים עבודה ידנית וחוסכים זמן.
-        </p>
 
-        <p>
+
           אני לא מבטיח שאוכל לפתור כל דבר.
           אבל אם יש בעיה, תהליך לא יעיל או רעיון לכלי,
           נשב, נבין את הצורך, ונראה אם אפשר לבנות פתרון פשוט שעובד.
-        </p>
 
-        <p>
+
           כרגע אני עושה את זה ללא עלות, במטרה לצבור ניסיון ולהתנסות בפתרון בעיות
           מסוגים שונים.
         </p>
@@ -649,30 +728,53 @@
       <div class="section-header">
         <span class="section-label">דוגמאות</span>
         <h2>בעיות שפתרתי בפועל</h2>
-        <p>כדי שתבין אם זה רלוונטי אליך:</p>
+        <p>כדי שתבין אם זה רלוונטי אליך</p>
       </div>
 
-      <div class="about-content">
-        <p>
-          <strong>בעיה:</strong> מנהל אקדמיה שהפיק תעודות לתלמידים אחת־אחת ידנית.<br>
-          <strong>פתרון:</strong> בניתי מערכת אוטומטית שמייצרת תעודות לפי תבנית,
-          חוסך לו שעות עבודה וטעויות.
+      <div class="solutions-list">
+
+        <div class="solution-card">
+          <span class="solution-problem">בעיה</span>
+          <div class="solution-problem-text">
+            מנהל אקדמיה שהפיק תעודות לתלמידים אחת אחת ידנית
+          </div>
+
+          <span class="solution-answer">פתרון</span>
+          <div class="solution-answer-text">
+            בניתי מערכת אוטומטית שמייצרת תעודות לפי תבנית
+            חוסך שעות עבודה וטעויות
+          </div>
+        </div>
+
+        <div class="solution-card">
+          <span class="solution-problem">בעיה</span>
+          <div class="solution-problem-text">
+            צורך לבנות טפסי Google Forms מורכבים שוב ושוב
+          </div>
+
+          <span class="solution-answer">פתרון</span>
+          <div class="solution-answer-text">
+            כלי שמקבל תיאור טקסטואלי ומייצר טופס מוכן לעריכה
+            באמצעות בינה מלאכותית
+          </div>
+        </div>
+
+        <div class="solution-card">
+          <span class="solution-problem">בעיה</span>
+          <div class="solution-problem-text">
+            תהליכים פנימיים לא ברורים מפוזרים בין קבצים ומיילים
+          </div>
+
+          <span class="solution-answer">פתרון</span>
+          <div class="solution-answer-text">
+            כלים קטנים שמרכזים מסדרים ומפשטים את העבודה
+          </div>
+        </div>
+
+        <p class="solutions-note">
+          אלה רק דוגמאות כל מקרה נבחן לגופו
         </p>
 
-        <p>
-          <strong>בעיה:</strong> צורך לבנות טפסי Google Forms מורכבים שוב ושוב.<br>
-          <strong>פתרון:</strong> כלי שמקבל תיאור טקסטואלי ומייצר טופס מוכן לעריכה
-          באמצעות בינה מלאכותית.
-        </p>
-
-        <p>
-          <strong>בעיה:</strong> תהליכים פנימיים לא ברורים, מפוזרים בין קבצים ומיילים.<br>
-          <strong>פתרון:</strong> כלים קטנים שמרכזים, מסדרים ומפשטים את העבודה.
-        </p>
-
-        <p>
-          אלה רק דוגמאות. כל מקרה נבחן לגופו.
-        </p>
       </div>
     </div>
   </section>
