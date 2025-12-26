@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ארז - פותר בעיות בעזרת קוד</title>
+  <title>ארז פותר בעיות בעזרת קוד</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <!-- Replaced Inter with Assistant for Hebrew optimization -->
@@ -41,8 +41,8 @@
       color: var(--color-text);
       background-color: var(--color-bg);
       /* Increased line-height for better Hebrew readability */
-      line-height: 1.75;
-      font-size: 17px;
+      line-height: 1.8;
+      font-size: 18px;
       -webkit-font-smoothing: antialiased;
       -moz-osx-font-smoothing: grayscale;
       direction: rtl;
@@ -130,6 +130,19 @@
       z-index: 1;
     }
 
+    .hero-image {
+      width: 160px;
+      height: 160px;
+      border-radius: 50%;
+      border: 1px solid var(--color-border);
+      margin-bottom: 3rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--color-text-muted);
+      font-size: 0.9rem;
+    }
+
     /* Refined label styling - lighter, more subtle */
     .hero-label {
       display: inline-block;
@@ -155,7 +168,7 @@
 
     /* Increased paragraph size and spacing, better max-width */
     .hero p {
-      font-size: 1.5rem;
+      font-size: 1.6rem;
       color: var(--color-text-secondary);
       margin-bottom: 3.5rem;
       line-height: 1.8;
@@ -266,7 +279,7 @@
 
     /* Increased font size and spacing between paragraphs */
     .about-content p {
-      font-size: 1.25rem;
+      font-size: 1.3rem;
       line-height: 2;
       color: var(--color-text-secondary);
       margin-bottom: 2.25rem;
@@ -452,8 +465,19 @@
         padding: 0 1.5rem;
       }
 
+      body {
+        font-size: 16px;
+        line-height: 1.75;
+      }
+
       .hero {
         padding: 6rem 0 8rem;
+      }
+
+      .hero-image {
+        width: 120px;
+        height: 120px;
+        margin-bottom: 2rem;
       }
 
       .hero h1 {
@@ -461,7 +485,7 @@
       }
 
       .hero p {
-        font-size: 1.25rem;
+        font-size: 1.35rem;
       }
 
       .build-grid {
@@ -527,13 +551,14 @@
   <section class="hero">
     <div class="container">
       <div class="hero-content">
+        <div class="hero-image">תמונה שלך כאן</div>
         <div class="hero-label">פיתוח כלים ואוטומציות בהתאמה אישית</div>
 
         <h1>פותר בעיות בעזרת קוד</h1>
 
         <p>
           אני מתכנת בחברת הייטק, בונה פרויקטים אישיים, סקריפטים ואוטומציות.
-          אם יש לך תהליך מסורבל, עבודה ידנית או בעיה שחוזרת על עצמה –  
+          אם יש לך תהליך מסורבל, עבודה ידנית או בעיה שחוזרת על עצמה,
           יש סיכוי טוב שאפשר לפתור את זה בכלי פשוט.
         </p>
 
@@ -562,7 +587,7 @@
 
         <p>
           אני לא מבטיח שאוכל לפתור כל דבר.
-          אבל אם יש בעיה, תהליך לא יעיל או רעיון לכלי –
+          אבל אם יש בעיה, תהליך לא יעיל או רעיון לכלי,
           נשב, נבין את הצורך, ונראה אם אפשר לבנות פתרון פשוט שעובד.
         </p>
 
@@ -580,14 +605,14 @@
       <div class="section-header">
         <span class="section-label">מה אני בונה</span>
         <h2>כלים קטנים שעושים שינוי גדול</h2>
-        <p>לא מוצרים מנופחים – פתרונות ממוקדים</p>
+        <p>לא מוצרים מנופחים, פתרונות ממוקדים</p>
       </div>
 
       <div class="build-grid">
         <div class="build-card">
           <h3>אוטומציות</h3>
           <p>
-            תהליכים ידניים שחוזרים על עצמם – הופכים ללחיצת כפתור אחת.
+            תהליכים ידניים שחוזרים על עצמם, הופכים ללחיצת כפתור אחת.
           </p>
         </div>
 
@@ -601,7 +626,7 @@
         <div class="build-card">
           <h3>פתרון בעיות תהליכיות</h3>
           <p>
-            זיהוי צווארי בקבוק, טעויות אנוש ובזבוז זמן – ובניית פתרון טכני פשוט.
+            זיהוי צווארי בקבוק, טעויות אנוש ובזבוז זמן, ובניית פתרון טכני פשוט.
           </p>
         </div>
       </div>
@@ -613,14 +638,14 @@
     <div class="container">
       <div class="section-header">
         <span class="section-label">דוגמאות</span>
-        <h2>בעיות שפטרתי בפועל</h2>
-        <p>כדי שתבין אם זה רלוונטי אליך</p>
+        <h2>בעיות שפתרתי בפועל</h2>
+        <p>כדי שתבין אם זה רלוונטי אליך:</p>
       </div>
 
       <div class="about-content">
         <p>
           <strong>בעיה:</strong> מנהל אקדמיה שהפיק תעודות לתלמידים אחת־אחת ידנית.<br>
-          <strong>פתרון:</strong> בניתי מערכת אוטומטית שמייצרת תעודות לפי תבנית –
+          <strong>פתרון:</strong> בניתי מערכת אוטומטית שמייצרת תעודות לפי תבנית,
           חוסך לו שעות עבודה וטעויות.
         </p>
 
@@ -659,7 +684,7 @@
 
         <p>
           אין התחייבות, אין מכירה, ואין לחץ.
-          אם זה מתאים – מעולה. אם לא – הכל בסדר.
+          אם זה מתאים, מעולה. אם לא, הכל בסדר.
         </p>
 
         <p>
