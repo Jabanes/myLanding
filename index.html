@@ -1,0 +1,714 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ארז - פותר בעיות בעזרת קוד</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <!-- Replaced Inter with Assistant for Hebrew optimization -->
+  <link href="https://fonts.googleapis.com/css2?family=Assistant:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      /* Updated color palette - softer, warmer dark theme with subtle teal accent */
+      --color-bg: #0d0d0d;
+      --color-surface: #1a1a1a;
+      --color-surface-elevated: #222222;
+      --color-text: #f8f8f8;
+      --color-text-secondary: #b8b8b8;
+      --color-text-muted: #8a8a8a;
+      --color-accent: #14b8a6;
+      --color-accent-soft: #5eead4;
+      --color-accent-glow: rgba(20, 184, 166, 0.12);
+      --color-border: #2d2d2d;
+      --color-border-subtle: #252525;
+      /* Updated to Assistant font for better Hebrew rendering */
+      --font-sans: 'Assistant', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: var(--font-sans);
+      color: var(--color-text);
+      background-color: var(--color-bg);
+      /* Increased line-height for better Hebrew readability */
+      line-height: 1.75;
+      font-size: 17px;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      direction: rtl;
+      text-align: right;
+      /* Added font-feature-settings for better Hebrew rendering */
+      font-feature-settings: "kern" 1;
+    }
+
+    /* Increased max-width and adjusted padding for more breathing room */
+    .container {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 0 4rem;
+    }
+
+    /* Header */
+    header {
+      padding: 2.5rem 0;
+      position: sticky;
+      top: 0;
+      background-color: rgba(13, 13, 13, 0.85);
+      backdrop-filter: blur(16px);
+      z-index: 100;
+      border-bottom: 1px solid var(--color-border-subtle);
+    }
+
+    .header-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    /* Increased logo size and weight for better presence */
+    .logo {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--color-text);
+      text-decoration: none;
+      letter-spacing: -0.02em;
+    }
+
+    nav ul {
+      display: flex;
+      gap: 3rem;
+      list-style: none;
+    }
+
+    /* Improved nav typography for Hebrew */
+    nav a {
+      color: var(--color-text-muted);
+      text-decoration: none;
+      transition: color 0.3s;
+      font-size: 1rem;
+      font-weight: 500;
+    }
+
+    nav a:hover {
+      color: var(--color-accent-soft);
+    }
+
+    /* Hero Section */
+    /* Increased padding dramatically for more dominant hero presence */
+    .hero {
+      padding: 12rem 0 14rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Adjusted glow position for RTL and made it subtler */
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -30%;
+      right: -10%;
+      width: 60%;
+      height: 80%;
+      background: radial-gradient(circle, var(--color-accent-glow) 0%, transparent 65%);
+      pointer-events: none;
+    }
+
+    /* Increased max-width significantly for wider hero content */
+    .hero-content {
+      max-width: 1100px;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* Refined label styling - lighter, more subtle */
+    .hero-label {
+      display: inline-block;
+      padding: 0.625rem 1.25rem;
+      background-color: transparent;
+      border: 1px solid var(--color-border);
+      border-radius: 9999px;
+      font-size: 0.95rem;
+      font-weight: 500;
+      color: var(--color-text-secondary);
+      margin-bottom: 2.5rem;
+    }
+
+    /* Massive increase in headline size, improved letter-spacing for Hebrew */
+    .hero h1 {
+      font-size: 7rem;
+      font-weight: 800;
+      line-height: 1.05;
+      margin-bottom: 2.5rem;
+      letter-spacing: -0.025em;
+      color: var(--color-text);
+    }
+
+    /* Increased paragraph size and spacing, better max-width */
+    .hero p {
+      font-size: 1.5rem;
+      color: var(--color-text-secondary);
+      margin-bottom: 3.5rem;
+      line-height: 1.8;
+      max-width: 850px;
+      font-weight: 400;
+    }
+
+    /* Buttons */
+    /* Increased padding for more substantial buttons */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1.125rem 2.25rem;
+      font-size: 1.0625rem;
+      font-weight: 600;
+      text-decoration: none;
+      border-radius: 0.875rem;
+      transition: all 0.3s;
+      border: none;
+      cursor: pointer;
+      font-family: var(--font-sans);
+    }
+
+    /* Updated to use new teal accent color */
+    .btn-primary {
+      background-color: var(--color-accent);
+      color: #fff;
+      box-shadow: 0 0 24px var(--color-accent-glow);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-3px);
+      background-color: var(--color-accent-soft);
+      box-shadow: 0 0 32px rgba(20, 184, 166, 0.2);
+    }
+
+    /* Lighter, more subtle secondary button */
+    .btn-secondary {
+      background-color: transparent;
+      color: var(--color-text-secondary);
+      border: 1px solid var(--color-border);
+    }
+
+    .btn-secondary:hover {
+      background-color: var(--color-surface);
+      border-color: var(--color-text-muted);
+      color: var(--color-text);
+    }
+
+    .btn-group {
+      display: flex;
+      gap: 1.25rem;
+      justify-content: flex-start;
+    }
+
+    /* Section Styles */
+    /* Dramatically increased section padding for better vertical rhythm */
+    section {
+      padding: 12rem 0;
+    }
+
+    /* Kept right-aligned for Hebrew, increased max-width */
+    .section-header {
+      text-align: right;
+      max-width: 950px;
+      margin: 0 0 6rem auto;
+    }
+
+    /* More subtle label styling */
+    .section-label {
+      display: inline-block;
+      padding: 0.5rem 1rem;
+      background-color: transparent;
+      border: 1px solid var(--color-border);
+      border-radius: 9999px;
+      font-size: 0.875rem;
+      font-weight: 600;
+      color: var(--color-accent-soft);
+      margin-bottom: 2rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    /* Increased heading sizes for stronger hierarchy */
+    .section-header h2 {
+      font-size: 3.75rem;
+      font-weight: 800;
+      margin-bottom: 1.5rem;
+      letter-spacing: -0.025em;
+      line-height: 1.1;
+    }
+
+    /* Larger, more readable section descriptions */
+    .section-header p {
+      font-size: 1.3rem;
+      color: var(--color-text-secondary);
+      line-height: 1.75;
+      font-weight: 400;
+    }
+
+    /* About Section */
+    /* Increased max-width for less constrained reading */
+    .about-content {
+      max-width: 900px;
+      margin: 0 0 0 auto;
+    }
+
+    /* Increased font size and spacing between paragraphs */
+    .about-content p {
+      font-size: 1.25rem;
+      line-height: 2;
+      color: var(--color-text-secondary);
+      margin-bottom: 2.25rem;
+      font-weight: 400;
+    }
+
+    /* What I Build Section */
+    /* Increased gap for more breathing room */
+    .build-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+      direction: rtl;
+    }
+
+    /* Lighter cards with subtle styling, removed heavy gradients */
+    .build-card {
+      padding: 3rem;
+      background-color: transparent;
+      border-radius: 1.5rem;
+      border: 1px solid var(--color-border);
+      transition: all 0.4s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* More subtle hover effect with accent border */
+    .build-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      background: linear-gradient(135deg, transparent 0%, var(--color-surface-elevated) 100%);
+      opacity: 0;
+      transition: opacity 0.4s;
+      border-radius: 1.5rem;
+      z-index: -1;
+    }
+
+    .build-card:hover {
+      transform: translateY(-6px);
+      border-color: var(--color-accent);
+    }
+
+    .build-card:hover::before {
+      opacity: 1;
+    }
+
+    /* Increased heading size with better spacing */
+    .build-card h3 {
+      font-size: 1.625rem;
+      font-weight: 700;
+      margin-bottom: 1.125rem;
+      letter-spacing: -0.015em;
+      color: var(--color-text);
+    }
+
+    /* Improved card paragraph readability */
+    .build-card p {
+      color: var(--color-text-secondary);
+      line-height: 1.85;
+      font-size: 1.0625rem;
+      font-weight: 400;
+    }
+
+    /* Why Free Section */
+    /* Increased max-width and padding, removed heavy background */
+    .why-free-content {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 4rem;
+      background-color: transparent;
+      border: 1px solid var(--color-border);
+      border-radius: 2rem;
+    }
+
+    /* Larger text with more spacing for comfortable reading */
+    .why-free-content p {
+      font-size: 1.3rem;
+      line-height: 2;
+      color: var(--color-text-secondary);
+      margin-bottom: 2.25rem;
+      font-weight: 400;
+    }
+
+    .why-free-content p:last-child {
+      margin-bottom: 0;
+    }
+
+    /* Softer emphasis styling */
+    .why-free-content strong {
+      color: var(--color-text);
+      font-weight: 700;
+    }
+
+    /* Contact Section */
+    /* Increased max-width for less cramped form */
+    .contact-form {
+      max-width: 800px;
+      margin: 0 0 0 auto;
+    }
+
+    /* Increased spacing between form groups */
+    .form-group {
+      margin-bottom: 2rem;
+    }
+
+    /* Improved label typography */
+    label {
+      display: block;
+      font-weight: 600;
+      margin-bottom: 0.875rem;
+      color: var(--color-text);
+      font-size: 1rem;
+    }
+
+    /* Larger inputs with better padding and subtle styling */
+    input,
+    textarea {
+      width: 100%;
+      padding: 1.125rem 1.5rem;
+      font-size: 1.0625rem;
+      font-family: var(--font-sans);
+      background-color: transparent;
+      border: 1px solid var(--color-border);
+      border-radius: 0.875rem;
+      transition: all 0.3s;
+      color: var(--color-text);
+    }
+
+    input:focus,
+    textarea:focus {
+      outline: none;
+      border-color: var(--color-accent);
+      background-color: var(--color-surface);
+      box-shadow: 0 0 0 4px var(--color-accent-glow);
+    }
+
+    textarea {
+      resize: vertical;
+      min-height: 180px;
+      line-height: 1.75;
+    }
+
+    /* Footer */
+    /* Increased padding for better separation */
+    footer {
+      padding: 6rem 0;
+      border-top: 1px solid var(--color-border-subtle);
+    }
+
+    .footer-content {
+      text-align: center;
+    }
+
+    /* Improved footer text styling */
+    .footer-content p {
+      color: var(--color-text-muted);
+      margin-bottom: 0;
+      font-size: 1rem;
+      font-weight: 400;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 1024px) {
+      .container {
+        padding: 0 2.5rem;
+      }
+
+      .hero h1 {
+        font-size: 5rem;
+      }
+
+      .section-header h2 {
+        font-size: 3rem;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .container {
+        padding: 0 1.5rem;
+      }
+
+      .hero {
+        padding: 6rem 0 8rem;
+      }
+
+      .hero h1 {
+        font-size: 3.5rem;
+      }
+
+      .hero p {
+        font-size: 1.25rem;
+      }
+
+      .build-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+      }
+
+      .section-header h2 {
+        font-size: 2.5rem;
+      }
+
+      .section-header p {
+        font-size: 1.125rem;
+      }
+
+      nav {
+        display: none;
+      }
+
+      .btn-group {
+        flex-direction: column;
+      }
+
+      .btn {
+        width: 100%;
+        text-align: center;
+      }
+
+      section {
+        padding: 7rem 0;
+      }
+
+      .why-free-content {
+        padding: 2.5rem;
+      }
+
+      .about-content p,
+      .why-free-content p {
+        font-size: 1.125rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header>
+    <div class="container">
+      <div class="header-content">
+        <a href="#" class="logo">ארז</a>
+        <nav>
+          <ul>
+            <li><a href="#about">עליי</a></li>
+            <li><a href="#solutions">מה אני פותר</a></li>
+            <li><a href="#contact">יצירת קשר</a></li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="container">
+      <div class="hero-content">
+        <div class="hero-label">פיתוח כלים ואוטומציות בהתאמה אישית</div>
+
+        <h1>פותר בעיות בעזרת קוד</h1>
+
+        <p>
+          אני מתכנת בחברת הייטק, בונה פרויקטים אישיים, סקריפטים ואוטומציות.
+          אם יש לך תהליך מסורבל, עבודה ידנית או בעיה שחוזרת על עצמה –  
+          יש סיכוי טוב שאפשר לפתור את זה בכלי פשוט.
+        </p>
+
+        <div class="btn-group">
+          <a href="#contact" class="btn btn-primary">בוא נדבר</a>
+          <a href="#solutions" class="btn btn-secondary">תראה דוגמאות</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- About Section -->
+  <section id="about">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-label">עליי</span>
+        <h2>בלי הבטחות, בלי חארטות</h2>
+        <p>גישה פרקטית לפתרון בעיות אמיתיות</p>
+      </div>
+
+      <div class="about-content">
+        <p>
+          אני עובד ביום־יום כמתכנת בחברת הייטק, ובזמן הפנוי בונה כלים ואוטומציות
+          שמחליפים עבודה ידנית וחוסכים זמן.
+        </p>
+
+        <p>
+          אני לא מבטיח שאוכל לפתור כל דבר.
+          אבל אם יש בעיה, תהליך לא יעיל או רעיון לכלי –
+          נשב, נבין את הצורך, ונראה אם אפשר לבנות פתרון פשוט שעובד.
+        </p>
+
+        <p>
+          כרגע אני עושה את זה ללא עלות, במטרה לצבור ניסיון ולהתנסות בפתרון בעיות
+          מסוגים שונים.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- What I Build Section -->
+  <section>
+    <div class="container">
+      <div class="section-header">
+        <span class="section-label">מה אני בונה</span>
+        <h2>כלים קטנים שעושים שינוי גדול</h2>
+        <p>לא מוצרים מנופחים – פתרונות ממוקדים</p>
+      </div>
+
+      <div class="build-grid">
+        <div class="build-card">
+          <h3>אוטומציות</h3>
+          <p>
+            תהליכים ידניים שחוזרים על עצמם – הופכים ללחיצת כפתור אחת.
+          </p>
+        </div>
+
+        <div class="build-card">
+          <h3>כלים פנימיים</h3>
+          <p>
+            מערכות קטנות שמותאמות בדיוק לצורך שלך או של העסק.
+          </p>
+        </div>
+
+        <div class="build-card">
+          <h3>פתרון בעיות תהליכיות</h3>
+          <p>
+            זיהוי צווארי בקבוק, טעויות אנוש ובזבוז זמן – ובניית פתרון טכני פשוט.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Solutions / Examples Section -->
+  <section id="solutions">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-label">דוגמאות</span>
+        <h2>בעיות שפטרתי בפועל</h2>
+        <p>כדי שתבין אם זה רלוונטי אליך</p>
+      </div>
+
+      <div class="about-content">
+        <p>
+          <strong>בעיה:</strong> מנהל אקדמיה שהפיק תעודות לתלמידים אחת־אחת ידנית.<br>
+          <strong>פתרון:</strong> בניתי מערכת אוטומטית שמייצרת תעודות לפי תבנית –
+          חוסך לו שעות עבודה וטעויות.
+        </p>
+
+        <p>
+          <strong>בעיה:</strong> צורך לבנות טפסי Google Forms מורכבים שוב ושוב.<br>
+          <strong>פתרון:</strong> כלי שמקבל תיאור טקסטואלי ומייצר טופס מוכן לעריכה
+          באמצעות בינה מלאכותית.
+        </p>
+
+        <p>
+          <strong>בעיה:</strong> תהליכים פנימיים לא ברורים, מפוזרים בין קבצים ומיילים.<br>
+          <strong>פתרון:</strong> כלים קטנים שמרכזים, מסדרים ומפשטים את העבודה.
+        </p>
+
+        <p>
+          אלה רק דוגמאות. כל מקרה נבחן לגופו.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Why Free Section -->
+  <section>
+    <div class="container">
+      <div class="section-header">
+        <span class="section-label">שקיפות</span>
+        <h2>למה זה בחינם?</h2>
+        <p>פשוט, בלי אותיות קטנות</p>
+      </div>
+
+      <div class="why-free-content">
+        <p>
+          <strong>המטרה שלי היא להתנסות.</strong>
+          לפתור בעיות אמיתיות, ללמוד תחומים שונים, ולהשתפשף על מקרים מהעולם האמיתי.
+        </p>
+
+        <p>
+          אין התחייבות, אין מכירה, ואין לחץ.
+          אם זה מתאים – מעולה. אם לא – הכל בסדר.
+        </p>
+
+        <p>
+          מה שאני כן מבקש: שיחה כנה ופתוחה.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contact">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-label">יצירת קשר</span>
+        <h2>יש בעיה? בוא נדבר</h2>
+        <p>ונבדוק אם אפשר לפתור אותה</p>
+      </div>
+
+      <form class="contact-form">
+        <div class="form-group">
+          <label>שם</label>
+          <input type="text" required />
+        </div>
+
+        <div class="form-group">
+          <label>אימייל / טלפון</label>
+          <input type="text" required />
+        </div>
+
+        <div class="form-group">
+          <label>תיאור קצר של הבעיה</label>
+          <textarea placeholder="מה לא עובד? מה לוקח זמן? מה מתסכל?" required></textarea>
+        </div>
+
+        <button type="submit" class="btn btn-primary" style="width:100%">
+          שלח
+        </button>
+      </form>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <div class="footer-content">
+        <p>ארז · פתרונות פשוטים לבעיות אמיתיות</p>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>
