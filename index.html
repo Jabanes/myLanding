@@ -42,15 +42,22 @@
       font-family: var(--font-sans);
       color: var(--color-text);
       background-color: var(--color-bg);
-      /* Increased line-height for better Hebrew readability */
-      line-height: 1.8;
-      font-size: 18px;
+      line-height: 1.85;
+      font-size: 20px;
       -webkit-font-smoothing: antialiased;
       -moz-osx-font-smoothing: grayscale;
       direction: rtl;
       text-align: right;
       /* Added font-feature-settings for better Hebrew rendering */
       font-feature-settings: "kern" 1;
+    }
+
+    p {
+      font-size: 2.6rem;
+      line-height: 1.95;
+      color: var(--color-text-secondary);
+      margin-bottom: 2rem;
+      max-width: 68ch;
     }
 
     /* Increased max-width and adjusted padding for more breathing room */
@@ -239,6 +246,12 @@
       margin: 0 0 4rem auto;
     }
 
+    #contact .section-header p {
+      text-align: center;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
     /* More subtle label styling */
     .section-label {
       display: inline-block;
@@ -246,7 +259,7 @@
       background-color: transparent;
       border: 1px solid var(--color-border);
       border-radius: 9999px;
-      font-size: 0.875rem;
+      font-size: 1.205rem;
       font-weight: 600;
       color: var(--color-accent-soft);
       margin-bottom: 2rem;
@@ -256,7 +269,7 @@
 
     /* Increased heading sizes for stronger hierarchy */
     .section-header h2 {
-      font-size: 3.75rem;
+      font-size: 4.75rem;
       font-weight: 800;
       margin-bottom: 1.5rem;
       letter-spacing: -0.025em;
@@ -344,7 +357,7 @@
     .build-card p {
       color: var(--color-text-secondary);
       line-height: 1.85;
-      font-size: 1.0625rem;
+      font-size: 1.4rem;
       font-weight: 400;
     }
 
@@ -400,9 +413,12 @@
     label {
       display: block;
       font-weight: 600;
-      margin-bottom: 0.875rem;
+      margin-bottom: 0.75rem;
       color: var(--color-text);
-      font-size: 1rem;
+      font-size: 1.2rem;
+
+      /* ALIGN WITH INPUT TEXT */
+      padding-right: calc(1rem);
     }
 
     /* Larger inputs with better padding and subtle styling */
@@ -452,6 +468,8 @@
       font-weight: 400;
     }
 
+
+
     /* =========================
    SOLUTIONS SECTION
 ========================= */
@@ -481,7 +499,7 @@
     .solution-problem,
     .solution-answer {
       display: block;
-      font-size: 1rem;
+      font-size: 1.5rem;
       font-weight: 700;
       color: var(--color-accent-soft);
       margin-bottom: 0.5rem;
@@ -506,8 +524,9 @@
       text-align: center;
       font-size: 1.2rem;
       color: var(--color-text-secondary);
-      margin-top: 3rem;
+      margin: 3rem auto 0;
       font-weight: 500;
+      max-width: 100%;
     }
 
     /* Responsive Design */
@@ -528,6 +547,12 @@
     @media (max-width: 768px) {
       .container {
         padding: 0 1.5rem;
+      }
+
+      p {
+        font-size: 1.25rem;
+        line-height: 1.8;
+        max-width: 100%;
       }
 
       body {
@@ -592,6 +617,8 @@
         font-size: 1.125rem;
       }
 
+      
+
       @media (max-width: 768px) {
         .hero-image {
           width: 120px;
@@ -618,6 +645,30 @@
       }
 
     }
+
+    /* Placeholder styling fix */
+    ::-webkit-input-placeholder {
+      font-size: 1.0625rem;
+      font-family: var(--font-sans);
+    }
+    ::-moz-placeholder {
+      font-size: 1.0625rem;
+      font-family: var(--font-sans);
+      opacity: 1;
+    }
+    :-ms-input-placeholder {
+      font-size: 1.0625rem;
+      font-family: var(--font-sans);
+    }
+    ::-ms-input-placeholder {
+      font-size: 1.0625rem;
+      font-family: var(--font-sans);
+    }
+    ::placeholder {
+      font-size: 1.3rem;
+      font-family: var(--font-sans);
+      opacity: 1;
+    }
   </style>
 </head>
 
@@ -627,7 +678,7 @@
   <header>
     <div class="container">
       <div class="header-content">
-        <a href="#" class="logo">ארז</a>
+        <a href="#" class="logo">היי, שמי ארז</a>
         <nav>
           <ul>
             <li><a href="#about">עליי</a></li>
@@ -646,7 +697,7 @@
         <div class="hero-image" style="background-image: url('./profile_pic.png');"></div>
         <div class="hero-label">פיתוח כלים ואוטומציות בהתאמה אישית</div>
 
-        <h1>פותר בעיות בעזרת קוד</h1>
+        <h1>פותר בעיות בדרכים יצירתיות</h1>
 
         <p>
           אני מתכנת בחברת הייטק, בונה פרויקטים אישיים, סקריפטים ואוטומציות.
@@ -715,7 +766,7 @@
         <div class="build-card">
           <h3>פתרון בעיות תהליכיות</h3>
           <p>
-            זיהוי צווארי בקבוק, טעויות אנוש ובזבוז זמן, ובניית פתרון טכני פשוט.
+            שימוש בכלים מתקדמים כדי לייעל תהליכים קיימים.
           </p>
         </div>
       </div>
@@ -728,7 +779,7 @@
       <div class="section-header">
         <span class="section-label">דוגמאות</span>
         <h2>בעיות שפתרתי בפועל</h2>
-        <p>כדי שתבין אם זה רלוונטי אליך</p>
+        <p>כדי שתבין אם זה רלוונטי אליך:</p>
       </div>
 
       <div class="solutions-list">
@@ -741,7 +792,7 @@
 
           <span class="solution-answer">פתרון</span>
           <div class="solution-answer-text">
-            בניתי מערכת אוטומטית שמייצרת תעודות לפי תבנית
+            מערכת אוטומטית שמייצרת תעודות לפי תבנית
             חוסך שעות עבודה וטעויות
           </div>
         </div>
@@ -762,17 +813,20 @@
         <div class="solution-card">
           <span class="solution-problem">בעיה</span>
           <div class="solution-problem-text">
-            תהליכים פנימיים לא ברורים מפוזרים בין קבצים ומיילים
+            צורך ליצור תוכן שיווקי לעסקים באופן עקבי
+            ובהתאמה אישית לכל מוצר או שירות
           </div>
 
           <span class="solution-answer">פתרון</span>
           <div class="solution-answer-text">
-            כלים קטנים שמרכזים מסדרים ומפשטים את העבודה
+            מערכת מבוססת בינה מלאכותית שמקבלת מוצר או שירות + תיאור,
+            והופכת אותם לתוכן שיווקי מוכן תוך דקות
           </div>
         </div>
 
+
         <p class="solutions-note">
-          אלה רק דוגמאות כל מקרה נבחן לגופו
+          אלה רק דוגמאות, כל מקרה נבחן לגופו
         </p>
 
       </div>
@@ -799,9 +853,6 @@
           אם זה מתאים, מעולה. אם לא, הכל בסדר.
         </p>
 
-        <p>
-          מה שאני כן מבקש: שיחה כנה ופתוחה.
-        </p>
       </div>
     </div>
   </section>
@@ -809,32 +860,44 @@
   <!-- Contact Section -->
   <section id="contact">
     <div class="container">
-      <div class="section-header">
+
+      <!-- CONTACT HEADER -->
+      <div class="section-header" id="contact-header">
         <span class="section-label">יצירת קשר</span>
         <h2>יש בעיה? בוא נדבר</h2>
         <p>ונבדוק אם אפשר לפתור אותה</p>
       </div>
 
-      <form class="contact-form">
+      <!-- SUCCESS MESSAGE -->
+      <div id="contact-success" style="display:none; text-align:center; max-width:600px; margin:0 auto;">
+        <h2 style="font-size:2.2rem; margin-bottom:1rem;">הפרטים נשלחו בהצלחה ✅</h2>
+        <p style="font-size:1.3rem; color:var(--color-text-secondary);">
+          ניצור איתך קשר בהקדם
+        </p>
+      </div>
+
+      <!-- FORM -->
+      <form class="contact-form" id="contact-form" action="https://formspree.io/f/xvzoaqvo" method="POST">
         <div class="form-group">
           <label>שם</label>
-          <input type="text" required />
+          <input type="text" name="name" required />
         </div>
 
         <div class="form-group">
           <label>אימייל / טלפון</label>
-          <input type="text" required />
+          <input type="text" name="contact" required />
         </div>
 
         <div class="form-group">
           <label>תיאור קצר של הבעיה</label>
-          <textarea placeholder="מה לא עובד? מה לוקח זמן? מה מתסכל?" required></textarea>
+          <textarea name="message" placeholder="מה לא עובד? מה לוקח זמן? מה מתסכל?" required></textarea>
         </div>
 
         <button type="submit" class="btn btn-primary" style="width:100%">
           שלח
         </button>
       </form>
+
     </div>
   </section>
 
@@ -847,6 +910,33 @@
     </div>
   </footer>
 
+  <script>
+    const form = document.getElementById('contact-form');
+    const header = document.getElementById('contact-header');
+    const success = document.getElementById('contact-success');
+
+    form.addEventListener('submit', async function (e) {
+      e.preventDefault();
+
+      const formData = new FormData(form);
+
+      const response = await fetch(form.action, {
+        method: form.method,
+        body: formData,
+        headers: {
+          'Accept': 'application/json'
+        }
+      });
+
+      if (response.ok) {
+        header.style.display = 'none';
+        form.style.display = 'none';
+        success.style.display = 'block';
+      } else {
+        alert('משהו השתבש. נסה שוב.');
+      }
+    });
+  </script>
 </body>
 
 </html>
