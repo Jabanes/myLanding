@@ -452,7 +452,7 @@
     /* Footer */
     /* Increased padding for better separation */
     footer {
-      padding: 6rem 0;
+      padding: 3rem 0;
       border-top: 1px solid var(--color-border-subtle);
     }
 
@@ -463,9 +463,11 @@
     /* Improved footer text styling */
     .footer-content p {
       color: var(--color-text-muted);
-      margin-bottom: 0;
+      margin: 0 auto;
       font-size: 1rem;
       font-weight: 400;
+      max-width: none;
+      text-align: center;
     }
 
 
@@ -617,7 +619,7 @@
         font-size: 1.125rem;
       }
 
-      
+
 
       @media (max-width: 768px) {
         .hero-image {
@@ -651,19 +653,23 @@
       font-size: 1.0625rem;
       font-family: var(--font-sans);
     }
+
     ::-moz-placeholder {
       font-size: 1.0625rem;
       font-family: var(--font-sans);
       opacity: 1;
     }
+
     :-ms-input-placeholder {
       font-size: 1.0625rem;
       font-family: var(--font-sans);
     }
+
     ::-ms-input-placeholder {
       font-size: 1.0625rem;
       font-family: var(--font-sans);
     }
+
     ::placeholder {
       font-size: 1.3rem;
       font-family: var(--font-sans);
