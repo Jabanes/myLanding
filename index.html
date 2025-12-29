@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ארז פותר בעיות בעזרת קוד</title>
+  <title>ארז - לכל בעיה יש פתרון</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <!-- Replaced Inter with Assistant for Hebrew optimization -->
@@ -495,6 +495,65 @@
       text-align: center;
     }
 
+    .footer-link {
+      color: var(--color-text-muted);
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.3s ease;
+    }
+
+    .footer-link:hover {
+      color: var(--color-accent-soft);
+    }
+
+    .footer-custom {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .footer-text {
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+
+    .footer-title {
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: var(--color-text);
+      letter-spacing: -0.01em;
+    }
+
+    .footer-subtitle {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.6rem;
+      font-size: 0.95rem;
+      color: var(--color-text-muted);
+    }
+
+    .linkedin-link {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 36px;
+      height: 36px;
+      border-radius: 9999px;
+      border: 1px solid var(--color-border);
+      color: var(--color-text-muted);
+      transition: all 0.3s ease;
+    }
+
+    .linkedin-link:hover {
+      color: #0a66c2;
+      /* LinkedIn blue */
+      border-color: #0a66c2;
+      background-color: rgba(10, 102, 194, 0.08);
+      transform: translateY(-2px);
+    }
 
 
     /* =========================
@@ -934,11 +993,27 @@
   <!-- Footer -->
   <footer>
     <div class="container">
-      <div class="footer-content">
-        <p>ארז · פתרונות פשוטים לבעיות אמיתיות</p>
+      <div class="footer-content footer-custom">
+
+        <div class="footer-text">
+          <div class="footer-title">ארז · לכל בעיה יש פתרון</div>
+          <div class="footer-subtitle">
+            ליצירת קשר בלינקדאין:
+            <a href="https://www.linkedin.com/in/erez-habani-309468221/" target="_blank" rel="noopener noreferrer"
+              class="linkedin-link" aria-label="LinkedIn profile">
+              <!-- LinkedIn SVG -->
+              <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true">
+                <path fill="currentColor"
+                  d="M20.447 20.452H17.21V14.84c0-1.337-.027-3.057-1.863-3.057-1.863 0-2.148 1.454-2.148 2.96v5.709H9.062V9h3.112v1.561h.045c.433-.82 1.494-1.684 3.073-1.684 3.287 0 3.893 2.164 3.893 4.977v6.598zM5.337 7.433a1.804 1.804 0 1 1 0-3.607 1.804 1.804 0 0 1 0 3.607zM6.956 20.452H3.716V9h3.24v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.727v20.545C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.273V1.727C24 .774 23.2 0 22.222 0z" />
+              </svg>
+            </a>
+          </div>
+        </div>
+
       </div>
     </div>
   </footer>
+
 
   <script>
     const form = document.getElementById('contact-form');
