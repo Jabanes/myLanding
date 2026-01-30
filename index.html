@@ -1878,7 +1878,7 @@
         </div>
 
         <div class="glass-card contact-form-card">
-          <form id="contact-form" action="https://formspree.io/f/xvzoaqvo" method="POST" onsubmit="handleSubmit(event)">
+          <form id="contact-form" onsubmit="handleSubmit(event)">
             <div class="form-group">
               <label for="name">שם</label>
               <input type="text" id="name" name="name" class="form-input" placeholder="השם שלך" required>
@@ -1984,7 +1984,7 @@
     }
 
     // Form submission
-    function handleSubmit(e) {
+    async function handleSubmit(e) {
       e.preventDefault();
       const form = document.getElementById('contact-form');
       const submitBtn = document.getElementById('submit-btn');
@@ -1993,29 +1993,41 @@
       submitBtn.textContent = 'שולח...';
       submitBtn.disabled = true;
 
-      // Submit to Formspree
-      const formData = new FormData(form);
+      // Get form data
+      const formData = {
+        name: form.name.value.trim(),
+        contact: form.contact.value.trim(),
+        message: form.message.value.trim()
+      };
 
-      fetch(form.action, {
-        method: form.method,
-        body: formData,
-        headers: {
-          'Accept': 'application/json'
-        }
-      }).then(response => {
-        if (response.ok) {
+      try {
+        // Submit to custom SMTP endpoint
+        const response = await fetch('/api/contact', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
+          },
+          body: JSON.stringify(formData)
+        });
+
+        const result = await response.json();
+
+        if (response.ok && result.success) {
           form.style.display = 'none';
           successMessage.style.display = 'block';
+          console.log('✅ Email sent successfully:', result.messageId);
         } else {
-          alert('משהו השתבש. נסה שוב.');
+          alert(result.message || 'משהו השתבש. נסה שוב.');
           submitBtn.textContent = 'שלח הודעה';
           submitBtn.disabled = false;
         }
-      }).catch(error => {
-        alert('משהו השתבש. נסה שוב.');
+      } catch (error) {
+        console.error('❌ Error submitting form:', error);
+        alert('שגיאה בשליחת ההודעה. בדוק את החיבור לאינטרנט ונסה שוב.');
         submitBtn.textContent = 'שלח הודעה';
         submitBtn.disabled = false;
-      });
+      }
     }
 
     // Close mobile menu on resize
