@@ -97,6 +97,18 @@
       padding: 0 1.5rem;
     }
 
+    @media (max-width: 768px) {
+      .container {
+        padding: 0 1rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .container {
+        padding: 0 0.75rem;
+      }
+    }
+
     /* Buttons - Premium Neon */
     .btn {
       display: inline-flex;
@@ -251,6 +263,73 @@
       color: var(--text-primary);
     }
 
+    /* Free Consultation Badge */
+    .free-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      padding: 0.25rem 0.625rem;
+      background: rgba(0, 245, 212, 0.12);
+      border: 1px solid rgba(0, 245, 212, 0.3);
+      border-radius: 6px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: var(--accent-cyan);
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+      animation: pulse-badge 3s ease-in-out infinite;
+    }
+
+    .free-badge svg {
+      width: 14px;
+      height: 14px;
+      stroke: var(--accent-cyan);
+      stroke-width: 2.5;
+      fill: none;
+    }
+
+    @keyframes pulse-badge {
+      0%, 100% {
+        box-shadow: 0 0 8px rgba(0, 245, 212, 0.2);
+      }
+      50% {
+        box-shadow: 0 0 16px rgba(0, 245, 212, 0.4);
+      }
+    }
+
+    .btn-with-badge {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .btn-badge {
+      position: absolute;
+      top: 0;
+      right: 0;
+      background: var(--accent-gradient);
+      color: var(--bg-main);
+      font-size: 0.6rem;
+      font-weight: 700;
+      padding: 0.25rem 0.65rem;
+      white-space: nowrap;
+      box-shadow: 0 2px 6px rgba(0, 245, 212, 0.3);
+      animation: pulse-badge 2s ease-in-out infinite;
+      z-index: 5;
+      line-height: 1.2;
+      border-radius: 0 10px 0 8px;
+    }
+
+    [dir="rtl"] .btn-badge {
+      right: auto;
+      left: 0;
+      border-radius: 10px 0 8px 0;
+    }
+
+    [dir="ltr"] .btn-badge {
+      right: 0;
+      left: auto;
+    }
+
     /* Section Styles */
     section {
       padding: var(--section-padding) 0;
@@ -348,8 +427,12 @@
       transition: all 0.3s ease;
     }
 
+    [dir="ltr"] .logo {
+      flex-direction: row;
+    }
+
     [dir="rtl"] .logo {
-      flex-direction: row-reverse;
+      flex-direction: row;
     }
 
     .logo-image {
@@ -376,6 +459,11 @@
       padding: 0 2px;
       white-space: nowrap;
       margin-top: 30px;
+      max-width: 100%;
+    }
+    
+    [dir="ltr"] .logo-text {
+      font-size: 0.9rem !important;
     }
 
     .logo-text::before {
@@ -763,6 +851,7 @@
       margin-top: 3rem;
       padding-top: 2rem;
       border-top: 1px solid rgba(255, 255, 255, 0.05);
+      align-items: stretch;
     }
 
     .guarantee-feature {
@@ -774,6 +863,8 @@
       background: rgba(0, 245, 212, 0.03);
       border: 1px solid rgba(0, 245, 212, 0.08);
       transition: all 0.3s;
+      height: 100%;
+      box-sizing: border-box;
     }
 
     .guarantee-feature:hover {
@@ -796,6 +887,13 @@
     .guarantee-feature .icon-box svg {
       width: 22px;
       height: 22px;
+    }
+
+    .guarantee-feature > div:last-child {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      min-width: 0;
     }
 
     .guarantee-feature h4 {
@@ -1442,6 +1540,10 @@
         grid-template-columns: 1fr;
       }
 
+      .guarantee-card {
+        padding: 2rem 1.5rem;
+      }
+
       .contact-grid {
         grid-template-columns: 1fr;
       }
@@ -1452,21 +1554,39 @@
         --section-padding: 4rem;
       }
 
+      .header-inner {
+        height: auto;
+        padding: 0.75rem 0;
+        gap: 0.75rem;
+      }
+
       .logo-image {
-        height: 40px;
+        height: 60px;
       }
 
       .logo-text {
-        font-size: 0.65rem;
+        font-size: 0.75rem;
+        margin-top: 10px;
+        line-height: 1.2;
+        max-width: 150px;
+      }
+
+      [dir="rtl"] .logo-text {
+        font-size: 0.75rem;
+        letter-spacing: 0.02em;
+        max-width: 150px;
       }
 
       .logo {
         gap: 0.5rem;
+        flex-shrink: 1;
+        min-width: 0;
       }
 
       .lang-toggle {
-        padding: 0.375rem 0.625rem;
-        font-size: 0.8125rem;
+        padding: 0.5rem 0.75rem;
+        font-size: 0.75rem;
+        flex-shrink: 0;
       }
 
       .lang-toggle svg {
@@ -1480,10 +1600,22 @@
 
       .mobile-menu-btn {
         display: block;
+        flex-shrink: 0;
       }
 
       .mobile-nav.open {
         display: flex;
+      }
+
+      [dir="ltr"] .logo-text {
+        font-size: 0.7rem;
+        letter-spacing: 0.02em;
+        max-width: 150px;
+      }
+
+      [dir="rtl"] .header-inner,
+      [dir="ltr"] .header-inner {
+        justify-content: space-between;
       }
 
       .faq-accordion {
@@ -1553,9 +1685,121 @@
       .pricing-card {
         padding: 2rem 1.5rem;
       }
+
+      .free-badge {
+        font-size: 0.7rem;
+        padding: 0.2rem 0.5rem;
+        gap: 0.25rem;
+      }
+
+      .free-badge svg {
+        width: 12px;
+        height: 12px;
+      }
+
+      .btn {
+        font-size: 0.9rem;
+        padding: 0.75rem 1.25rem;
+        white-space: normal;
+        text-align: center;
+      }
+
+      .btn-secondary {
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+
+      .btn-badge {
+        font-size: 0.55rem;
+        padding: 0.2rem 0.5rem;
+      }
+
+      .btn-lg {
+        padding: 0.85rem 1.5rem;
+        padding-top: 1rem;
+      }
+
+      .btn-with-badge {
+        padding-top: 1.2rem;
+      }
     }
 
     @media (max-width: 480px) {
+      .header-inner {
+        padding: 0.5rem 0;
+      }
+
+      .logo-image {
+        height: 50px;
+      }
+
+      .logo-text {
+        font-size: 0.65rem;
+        margin-top: 8px;
+        max-width: 100px;
+      }
+
+      [dir="rtl"] .logo-text {
+        font-size: 0.65rem;
+        max-width: 100px;
+      }
+
+      .logo {
+        gap: 0.375rem;
+      }
+
+      .lang-toggle {
+        padding: 0.375rem 0.5rem;
+        font-size: 0.7rem;
+      }
+
+      .lang-toggle svg {
+        width: 14px;
+        height: 14px;
+      }
+
+      .mobile-menu-btn {
+        padding: 0.375rem;
+      }
+
+      .mobile-menu-btn svg {
+        width: 22px;
+        height: 22px;
+      }
+
+      [dir="ltr"] .logo-text {
+        font-size: 0.6rem;
+        max-width: 100px;
+      }
+
+      .guarantee-card {
+        padding: 1.5rem 1rem;
+      }
+
+      .free-badge {
+        font-size: 0.65rem;
+        padding: 0.2rem 0.45rem;
+      }
+
+      .btn {
+        font-size: 0.85rem;
+        padding: 0.65rem 1rem;
+      }
+
+      .btn-badge {
+        font-size: 0.5rem;
+        padding: 0.15rem 0.4rem;
+      }
+
+      .btn-lg {
+        padding: 0.75rem 1.25rem;
+        padding-top: 0.95rem;
+      }
+
+      .btn-with-badge {
+        padding-top: 1.1rem;
+      }
+
       .hero-buttons {
         flex-direction: column;
         width: 100%;
@@ -1777,7 +2021,10 @@
           <a href="#cases" class="nav-link" data-i18n="nav-cases">דוגמאות</a>
           <a href="#pricing" class="nav-link" data-i18n="nav-pricing">מחירים</a>
           <a href="#contact" class="nav-link" data-i18n="nav-contact">צור קשר</a>
-          <a href="#contact" class="btn btn-primary" data-i18n="nav-cta">בוא נדבר</a>
+          <a href="#contact" class="btn btn-primary btn-with-badge">
+            <span class="btn-badge" data-i18n="free-badge">חינם</span>
+            <span data-i18n="nav-cta">בוא נדבר</span>
+          </a>
         </nav>
 
         <button class="mobile-menu-btn" onclick="toggleMenu()" aria-label="תפריט">
@@ -1803,7 +2050,10 @@
         <a href="#cases" class="nav-link" onclick="closeMenu()" data-i18n="nav-cases">דוגמאות</a>
         <a href="#pricing" class="nav-link" onclick="closeMenu()" data-i18n="nav-pricing">מחירים</a>
         <a href="#contact" class="nav-link" onclick="closeMenu()" data-i18n="nav-contact">צור קשר</a>
-        <a href="#contact" class="btn btn-primary" onclick="closeMenu()" data-i18n="nav-cta">בוא נדבר</a>
+        <a href="#contact" class="btn btn-primary btn-with-badge" onclick="closeMenu()">
+          <span class="btn-badge" data-i18n="free-badge">חינם</span>
+          <span data-i18n="nav-cta">בוא נדבר</span>
+        </a>
       </nav>
     </div>
   </header>
@@ -1836,7 +2086,8 @@
           </p>
 
           <div class="hero-buttons">
-            <a href="#contact" class="btn btn-primary btn-lg">
+            <a href="#contact" class="btn btn-primary btn-lg btn-with-badge">
+              <span class="btn-badge" data-i18n="free-badge">חינם</span>
               <span data-i18n="hero-cta">בוא נדבר</span>
               <svg class="hero-cta-arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                 stroke-linecap="round" stroke-linejoin="round">
@@ -1936,6 +2187,21 @@
             </div>
           </div>
         </div>
+        
+        <div style="text-align: center; margin-top: 2.5rem; padding-top: 2rem; border-top: 1px solid rgba(255, 255, 255, 0.05);">
+          <p style="font-size: 0.95rem; color: var(--text-muted); margin-bottom: 1rem;">
+            <span data-i18n="about-cta-text">רוצה לדעת איך זה יכול לעבוד אצלך?</span>
+          </p>
+          <a href="#contact" class="btn btn-secondary" style="gap: 0.75rem;">
+            <span class="free-badge">
+              <svg viewBox="0 0 24 24">
+                <path d="M20 6L9 17l-5-5"/>
+              </svg>
+              <span data-i18n="free-consultation">שיחת ייעוץ חינם</span>
+            </span>
+            <span data-i18n="about-cta-btn">בוא נבדוק ביחד</span>
+          </a>
+        </div>
       </div>
     </div>
   </section>
@@ -2032,6 +2298,20 @@
       <div class="faq-accordion" id="cases-accordion">
         <!-- Cases will be dynamically rendered based on language -->
       </div>
+
+      <!-- <div style="text-align: center; margin-top: 3.5rem;">
+        <p style="font-size: 1.1rem; color: var(--text-primary); margin-bottom: 1.5rem; font-weight: 500;">
+          <span data-i18n="cases-cta-question">יש לך תהליך דומה שצריך שיפור?</span>
+        </p>
+        <a href="#contact" class="btn btn-primary btn-lg btn-with-badge">
+          <span class="btn-badge" data-i18n="free-badge">חינם</span>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
+          </svg>
+          <span data-i18n="cases-cta-button">בוא נדבר על הפתרון שלך</span>
+        </a>
+      </div> -->
   </section>
 
 
@@ -2055,10 +2335,11 @@
           <span data-i18n="pricing-p2-before">בהתאם לזה נוכל להציע פתרון מותאם אישית.</span> <span class="text-primary" style="font-weight: 500;" data-i18n="pricing-p2-highlight">שיחת הייעוץ עצמה
             לא עולה כסף.</span>
         </p>
-        <p data-i18n="pricing-p3">בפגישת הייעוץ הראשונית נבחן יחד אם אני הכתובת הנכונה עבורך.</p>
+        <p data-i18n="pricing-p3">בשיחת הייעוץ הראשונית נבחן יחד אם אני הכתובת הנכונה עבורך.</p>
 
         <div class="pricing-cta">
-          <a href="#contact" class="btn btn-primary btn-lg">
+          <a href="#contact" class="btn btn-primary btn-lg btn-with-badge">
+            <span class="btn-badge" data-i18n="free-badge">חינם</span>
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
               stroke-linecap="round" stroke-linejoin="round">
               <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
@@ -2078,7 +2359,15 @@
         <h2 class="section-title">
           <span data-i18n="contact-title-1">יש בעיה?</span> <span class="text-accent" data-i18n="contact-title-2">בוא נדבר</span>
         </h2>
-        <p class="section-subtitle" data-i18n="contact-subtitle">מלא את הפרטים לשיחת ייעוץ בחינם</p>
+        <p class="section-subtitle">
+          <span data-i18n="contact-subtitle-before">מלא את הפרטים לשיחת ייעוץ</span>
+          <span class="free-badge" style="margin: 0 0.5rem; vertical-align: middle;">
+            <svg viewBox="0 0 24 24">
+              <path d="M20 6L9 17l-5-5"/>
+            </svg>
+            <span data-i18n="contact-free">100% חינם</span>
+          </span>
+        </p>
       </div>
 
       <div class="contact-grid">
@@ -2343,8 +2632,8 @@
     };
 
     const translations = {
-      he: {
-        'lang-name': 'עברית',
+      he: { 
+        'lang-name': 'English',
         'logo-text': 'ניהול קוד ופתרונות',
         'nav-about': 'אודות',
         'nav-tools': 'כלים',
@@ -2364,17 +2653,20 @@
         'about-subtitle': 'זו לא סתם הבטחה - זו הדרך שלי לעבוד',
         'about-p1': 'בעבר, בנייה של פתרונות ומערכות מותאמות אישית הייתה כרוכה בהשקעה של עשרות אלפי שקלים. בעלי עסקים קטנים ועצמאים פשוט לא יכלו להרשות לעצמם את זה.',
         'about-p2-before': 'היום, באמצעות בינה מלאכותית וכלים טכנולוגיים מתקדמים, אני יודע לבנות',
-        'about-p2-highlight': 'פתרונות מותאמים אישית',
+        'about-p2-highlight': 'פתרונות מותאמים אישית ',
         'about-p2-after': 'ממוקדים בדיוק לצורך שלך, בפחות זמן ובעלות נמוכה משמעותית.',
         'about-p3-before': 'המטרה היא לא מערכת מנופחת, אלא',
         'about-p3-highlight': 'פתרון שעובד ומייצר ערך אמיתי',
-        'about-p3-after': 'פשוט.',
+        'about-p3-after': ' פשוט.',
         'about-feat1-title': 'ללא סיכון',
         'about-feat1-desc': 'משלמים רק על תוצאות',
         'about-feat2-title': 'פתרונות מותאמים',
         'about-feat2-desc': 'לכל בעיה פתרון ייחודי',
         'about-feat3-title': 'שותפות לתהליך',
         'about-feat3-desc': 'הבנת העסק וליווי אישי',
+        'about-cta-text': 'רוצה לדעת איך זה יכול לעבוד אצלך?',
+        'about-cta-btn': 'בוא נבדוק ביחד',
+        'free-consultation': 'שיחת ייעוץ חינם',
         'tools-label': 'מה אני בונה',
         'tools-title-1': 'כלים קטנים',
         'tools-title-2': 'שעושים שינוי גדול',
@@ -2427,6 +2719,8 @@
         'case4-result-after': 'לכל לקוח, בצורה אחידה, יעילה ומקצועית. שימוש שחוסך ימים של עבודה תוך שמירה על אמינות בקנה מידה גדול.',
         'cases-cta-before': 'אלה רק חלק מהדברים.',
         'cases-cta-link': 'אם יש לך תהליך שמרגיש תקוע בוא נבדוק איך אפשר לייעל אותו',
+        'cases-cta-question': 'יש לך תהליך דומה שצריך שיפור?',
+        'cases-cta-button': 'בוא נדבר על הבעיה שלך',
         'pricing-label': 'תכלס',
         'pricing-title-1': 'כמה זה',
         'pricing-title-2': 'עולה?',
@@ -2434,12 +2728,15 @@
         'pricing-p1': 'העלות משתנה בהתאם לצורך של העסק ולמורכבות הבעיה. הכול מתחיל משיחת ייעוץ שבה נבין מה הקשיים בעסק שלך, מה גוזל ממך הרבה זמן או כסף, ואילו כלים טכנולוגיים כבר קיימים אצלך.',
         'pricing-p2-before': 'בהתאם לזה נוכל להציע פתרון מותאם אישית.',
         'pricing-p2-highlight': 'שיחת הייעוץ עצמה לא עולה כסף.',
-        'pricing-p3': 'בפגישת הייעוץ הראשונית נבחן יחד אם אני הכתובת הנכונה עבורך.',
+        'pricing-p3': 'בשיחת הייעוץ הראשונית נבחן יחד אם אני הכתובת הנכונה עבורך.',
         'pricing-cta': 'בוא נדבר על הבעיה שלך',
         'contact-label': 'צור קשר',
         'contact-title-1': 'יש בעיה?',
         'contact-title-2': 'בוא נדבר',
         'contact-subtitle': 'מלא את הפרטים לשיחת ייעוץ בחינם',
+        'contact-subtitle-before': 'מלא את הפרטים לשיחת ייעוץ',
+        'contact-free': '100% חינם',
+        'free-badge': 'חינם',
         'contact-info-title': 'דרכי יצירת קשר',
         'contact-tip-label': 'טיפ:',
         'contact-tip-text': 'ככל שתתאר את הבעיה שלך בצורה מפורטת יותר, כך אוכל להבין טוב יותר איך לעזור.',
@@ -2464,7 +2761,7 @@
         'accessibility-reset': 'איפוס'
       },
       en: {
-        'lang-name': 'English',
+        'lang-name': 'עברית',
         'logo-text': 'Management.Code.Solutions',
         'nav-about': 'About',
         'nav-tools': 'Tools',
@@ -2485,16 +2782,19 @@
         'about-p1': 'In the past, building custom solutions and systems required an investment of tens of thousands of dollars. Small business owners and freelancers simply couldn\'t afford it.',
         'about-p2-before': 'Today, using artificial intelligence and advanced technological tools, I can build',
         'about-p2-highlight': 'custom solutions',
-        'about-p2-after': 'precisely tailored to your needs, in less time and at significantly lower cost.',
+        'about-p2-after': ' precisely tailored to your needs, in less time and at significantly lower cost.',
         'about-p3-before': 'The goal is not a bloated system, but',
         'about-p3-highlight': 'a solution that works and creates real value',
-        'about-p3-after': 'Simple.',
+        'about-p3-after': ' Simple.',
         'about-feat1-title': 'No Risk',
         'about-feat1-desc': 'Pay only for results',
         'about-feat2-title': 'Custom Solutions',
         'about-feat2-desc': 'Unique solution for every problem',
         'about-feat3-title': 'Partnership Process',
         'about-feat3-desc': 'Business understanding & personal guidance',
+        'about-cta-text': 'Want to know how it can work for you?',
+        'about-cta-btn': "Let's check together",
+        'free-consultation': 'Free Consultation',
         'tools-label': 'What I Build',
         'tools-title-1': 'Small Tools',
         'tools-title-2': 'That Make Big Changes',
@@ -2547,6 +2847,8 @@
         'case4-result-after': 'for each client, in a consistent, efficient and professional manner. A usage that saves days of work while maintaining reliability at scale.',
         'cases-cta-before': "That's just part of it.",
         'cases-cta-link': "If you have a process that feels stuck, let's check how we can optimize it",
+        'cases-cta-question': 'Have a similar process that needs improvement?',
+        'cases-cta-button': "Let's talk about your solution",
         'pricing-label': 'Honestly',
         'pricing-title-1': 'How much does',
         'pricing-title-2': 'it cost?',
@@ -2560,6 +2862,9 @@
         'contact-title-1': 'Have a problem?',
         'contact-title-2': "Let's talk",
         'contact-subtitle': 'Fill in the details for a free consultation call',
+        'contact-subtitle-before': 'Fill in the details for a consultation call',
+        'contact-free': '100% FREE',
+        'free-badge': 'FREE',
         'contact-info-title': 'Contact Methods',
         'contact-tip-label': 'Tip:',
         'contact-tip-text': 'The more detailed you describe your problem, the better I can understand how to help.',
