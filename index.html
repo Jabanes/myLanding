@@ -41,6 +41,10 @@
 
       /* Font - Assistant for Hebrew */
       --font-sans: 'Assistant', system-ui, -apple-system, sans-serif;
+
+      /* Profile image pop-out control */
+      --circle-size: 320px;
+      --pop-out-height: 60px;
     }
 
     * {
@@ -741,10 +745,25 @@
       margin-top: 2rem;
     }
 
-    .hero-image-wrapper {
-      display: flex;
-      justify-content: center;
+    /* Profile Container - CSS Grid stacking approach */
+    .hero-image-wrapper.profile-container {
       position: relative;
+      width: var(--circle-size);
+      height: var(--circle-size);
+      margin: 0 auto;
+      overflow: visible; /* Allow image to extend upward */
+      
+      /* Grid allows us to stack the circle and image perfectly */
+      display: grid;
+      grid-template-areas: "stack";
+      
+      /* FIX 1: Force the grid row to be exactly the container height (320px) */
+      grid-template-rows: 100%; 
+      grid-template-columns: 100%;
+      
+      /* FIX 2: Anchor everything to the BOTTOM-CENTER */
+      align-items: end; 
+      justify-items: center;
     }
 
     /* Multi-layer glow for profile - STICH Enhanced */
@@ -755,6 +774,8 @@
       border-radius: 50%;
       filter: blur(40px);
       animation: hero-glow 4s ease-in-out infinite;
+      z-index: 0;
+      pointer-events: none;
     }
 
     @keyframes hero-glow {
@@ -777,6 +798,8 @@
       background: radial-gradient(circle, rgba(0, 245, 212, 0.1) 0%, transparent 70%);
       border-radius: 50%;
       filter: blur(20px);
+      z-index: 0;
+      pointer-events: none;
     }
 
     .hero-image-wrapper:hover .hero-image-glow {
@@ -787,23 +810,26 @@
       background: radial-gradient(circle, rgba(0, 245, 212, 0.2) 0%, transparent 70%);
     }
 
-    .hero-image {
-      position: relative;
-      width: 320px;
-      height: 320px;
+    /* The Visual Circle */
+    .profile-circle {
+      grid-area: stack;
+      width: 100%;
+      height: 100%;
       border-radius: 50%;
-      overflow: hidden;
+      
+      /* Visual Styling */
+      background: rgba(2, 6, 23, 0.5);
       border: 3px solid rgba(0, 245, 212, 0.3);
-      box-shadow: 0 0 20px rgba(0, 245, 212, 0.2), 0 0 40px rgba(0, 245, 212, 0.08);
-      transition: all 0.3s ease;
+      box-shadow: 
+        0 0 20px rgba(0, 245, 212, 0.2),
+        0 0 40px rgba(0, 245, 212, 0.08);
+      
+      position: relative;
+      z-index: 1;
+      transition: all 0.4s ease-in-out;
     }
 
-    .hero-image-wrapper:hover .hero-image {
-      border-color: rgba(0, 245, 212, 0.5);
-      box-shadow: 0 0 40px rgba(0, 245, 212, 0.4), 0 0 80px rgba(0, 245, 212, 0.2);
-    }
-
-    .hero-image::before {
+    .profile-circle::before {
       content: '';
       position: absolute;
       inset: -3px;
@@ -814,12 +840,46 @@
       mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
       -webkit-mask-composite: xor;
       mask-composite: exclude;
+      pointer-events: none;
     }
 
-    .hero-image img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
+    /* The Image */
+    .profile-img {
+      grid-area: stack;
+      
+      /* Matches width, allows height to exceed circle */
+      width: 100%; 
+      height: calc(var(--circle-size) + var(--pop-out-height));
+      
+      /* Ensures the face isn't distorted */
+      object-fit: cover; 
+      
+      /* FIX 3: Align the image content to the top so the head is visible */
+      /* If your image gets cut off, try changing 'top' to 'center' */
+      object-position: top center;
+      
+      z-index: 2;
+      border-radius: 0 0 50% 50%;
+      
+      pointer-events: none; 
+      transition: height 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+      
+      /* FIX 4: Explicitly tell the image itself to sit at the bottom */
+      align-self: end;
+    }
+
+    /* Hover Effect */
+    .profile-container:hover .profile-img {
+      /* Increases pop-out by 20px on hover */
+      height: calc(var(--circle-size) + var(--pop-out-height) + 20px);
+    }
+
+    .profile-container:hover .profile-circle {
+      border-color: rgba(0, 245, 212, 0.5);
+      box-shadow: 
+        0 0 40px rgba(0, 245, 212, 0.4),
+        0 0 80px rgba(0, 245, 212, 0.2);
+      transform: scale(0.98); /* Subtle press effect on the circle only */
     }
 
     /* Guarantee Section */
@@ -1523,13 +1583,10 @@
         justify-content: center;
       }
 
-      .hero-image-wrapper {
+      .hero-image-wrapper.profile-container {
         order: 1;
-      }
-
-      .hero-image {
-        width: 280px;
-        height: 280px;
+        --circle-size: 280px;
+        --pop-out-height: 50px;
       }
 
       .tools-grid {
@@ -1809,9 +1866,9 @@
         width: 100%;
       }
 
-      .hero-image {
-        width: 220px;
-        height: 220px;
+      .hero-image-wrapper.profile-container {
+        --circle-size: 220px;
+        --pop-out-height: 40px;
       }
     }
 
@@ -2099,12 +2156,11 @@
           </div>
         </div>
 
-        <div class="hero-image-wrapper">
+        <div class="hero-image-wrapper profile-container">
           <div class="hero-image-glow"></div>
           <div class="hero-image-glow-inner"></div>
-          <div class="hero-image">
-            <img src="./profile_pic.jpg" alt="תמונת פרופיל">
-          </div>
+          <div class="profile-circle"></div>
+          <img src="./profile_pic_no_background.png" alt="תמונת פרופיל" class="profile-img">
         </div>
       </div>
     </div>
